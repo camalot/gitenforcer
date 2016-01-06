@@ -16,8 +16,9 @@
   "author": "Nathan LaFreniere <quitlahok@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "github": "~0.1.10",
     "express": "~3.3.5",
-    "jade": "~0.34.1"
+    "github": "~0.1.10",
+    "jade": "~0.34.1",
+    "nodeunit": "^0.9.1"
   }
 }

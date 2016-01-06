@@ -1,0 +1,9 @@
+machine:
+  timezone:
+    America/Los_Angeles
+  node:
+    version:
+      5.1.0
+test:
+  override:
+    - ./run_tests.sh
