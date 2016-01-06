@@ -7,11 +7,11 @@ Configuration
 =============
 
 Configuration is an object containing the following parameters
-* username - the username to authenticate as in github
-* password - the password associated with the username (it only uses basic auth)
-* organization (optional) - if you want to monitor an organization rather than a single user, specify one here
-* baseUrl - the base url (including hostname and port) of gitenforcer, i.e. http://enforcer.yourserver.com:8000
-* pollInterval (optional) - if specified, in seconds, how often to poll github for new repositories to add to the admin page. if not specified, polling will not take place.
+* `token` - the access token with which to authenticate against GitHub's api
+* `user` - the user whose repos you want to monitor (or use `org`)
+* `org` (optional) - if you want to monitor an organization rather than a single user, specify one here
+* `baseUrl` - the base url (including hostname and port) of gitenforcer, i.e. http://enforcer.yourserver.com:8000
+* `pollInterval` (optional) - if specified, in seconds, how often to poll github for new repositories to add to the admin page. if not specified, polling will not take place.
 
 Middleware
 ==========
@@ -33,6 +33,11 @@ Usage
 
 ```javascript
 var gitenforcer = require('gitenforcer'),
+    config = {
+      baseUrl: 'http://localhost',
+      user: 'nlf',
+      token: process.env.GITHUB_TOKEN
+    },
     app = gitenforcer(config);
 
 app.listen(3000);

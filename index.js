@@ -15,6 +15,7 @@ var gitenforcer = module.exports = function (options) {
 
     // save a copy for future reference
     this.options = options;
+    this.options.port = options.baseUrl.split(':')[2] || 80;
 
     // setup the github client
     this.github = new Github({ version: '3.0.0', debug: false });
@@ -34,7 +35,8 @@ var gitenforcer = module.exports = function (options) {
 
     var self = this;
     router.getAllRepos(self, function () {
-        self.app.listen(options.port || 1337);
+        console.log("Open "+options.baseUrl+" for a list of enforceable repos.");
+        self.app.listen(options.port);
     });
 }
 
