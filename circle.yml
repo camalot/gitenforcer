@@ -5,11 +5,5 @@ machine:
     version:
       5.1.0
 test:
-  pre:
-    - echo "PRE"
   override:
-    - echo "STSET"
     - ./run_tests.sh
-    - echo "TESTS"
-  post:
-    - echo "POST"
