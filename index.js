@@ -8,14 +8,14 @@ var gitenforcer = module.exports = function (options) {
     // validate the options
     if (typeof options !== 'object') throw new Error('Must include a configuration object');
     if (typeof options.token !== 'string') throw new Error('Must include a valid oauth token');
-    if (typeof options.baseUrl !== 'string') throw new Error('Must include a valid baseUrl');
+    if (typeof options.publicUrl !== 'string') throw new Error('Must include a valid publicUrl');
+    if (!options.listenPort) throw new Error('Must specify a listenPort to listen on');
 
     // initialize the empty middleware array
     this.middleware = [];
 
     // save a copy for future reference
     this.options = options;
-    this.options.port = options.baseUrl.split(':')[2] || 80;
 
     // setup the github client
     this.github = new Github({ version: '3.0.0', debug: false });
@@ -35,8 +35,8 @@ var gitenforcer = module.exports = function (options) {
 
     var self = this;
     router.getAllRepos(self, function () {
-        console.log("Open "+options.baseUrl+" for a list of enforceable repos.");
-        self.app.listen(options.port);
+        console.log("Open "+options.publicUrl+" for a list of enforceable repos.");
+        self.app.listen(options.listenPort);
     });
 }
 

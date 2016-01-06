@@ -52,7 +52,7 @@ exports.enforce = function _enforce(context) {
     return function _enforce_route(req, res, next) {
         var owner = context.options.org || context.options.user;
 
-        context.github.repos.createHook({ user: owner, repo: req.params.repo, name: 'web', config: { content_type: 'json', url: context.options.baseUrl + '/github/callback' }, events: ['pull_request', 'issue_comment'] }, function (err, result) {
+        context.github.repos.createHook({ user: owner, repo: req.params.repo, name: 'web', config: { content_type: 'json', url: context.options.publicUrl + '/github/callback' }, events: ['pull_request', 'issue_comment'] }, function (err, result) {
             res.redirect('/' + req.params.repo);
         });
     };
@@ -134,7 +134,7 @@ function getHook(context, repo, callback) {
         // we have some hooks, so search them to see if they're our app
         if (hooks && hooks.length) {
             hooks.forEach(function (hook) {
-                if (hook.name === 'web' && hook.config.url.match(context.options.baseUrl)) {
+                if (hook.name === 'web' && hook.config.url.match(context.options.publicUrl)) {
                     result = hook.id;
                 }
             });

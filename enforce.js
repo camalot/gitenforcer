@@ -2,7 +2,8 @@ var gitenforcer = require('./index'),
     rules = require('./rules').rules,
     // note that you can specify either 'user' or 'org' depending on if you want to watch a username or an organization
     app = gitenforcer({
-      baseUrl: process.env.BASE_URL,
+      publicUrl: process.env.PUBLIC_URL,
+      listenPort: process.env.PORT,
       token: process.env.GITHUB_TOKEN,
       org: process.env.GITHUB_ORG
     });
