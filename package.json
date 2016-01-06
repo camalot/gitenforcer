@@ -18,7 +18,9 @@
   "dependencies": {
     "express": "~3.3.5",
     "github": "~0.1.10",
-    "jade": "~0.34.1",
+    "jade": "~0.34.1"
+  },
+  "devDependencies": {
     "nodeunit": "^0.9.1"
   }
 }
